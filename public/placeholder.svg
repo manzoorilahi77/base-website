@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Placeholder image">
+  <defs>
+    <pattern id="hatch" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#9A9A94" stroke-width="1" stroke-opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="900" fill="#8F8F8A" fill-opacity="0.10"/>
+  <rect width="1200" height="900" fill="url(#hatch)"/>
+  <rect x="0.5" y="0.5" width="1199" height="899" fill="none" stroke="#8F8F8A" stroke-opacity="0.35"/>
+  <g fill="none" stroke="#8F8F8A" stroke-opacity="0.5" stroke-width="2">
+    <circle cx="600" cy="420" r="86"/>
+    <path d="M544 486l52-58 40 44 30-32 46 50"/>
+  </g>
+  <circle cx="572" cy="392" r="15" fill="#8F8F8A" fill-opacity="0.5"/>
+</svg>

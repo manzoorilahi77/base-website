@@ -1,0 +1,95 @@
+@import 'tailwindcss';
+
+/*
+ * Theme bridge.
+ *
+ * These @theme entries deliberately hold INDIRECTIONS, not values. The real values
+ * are written as --site-* custom properties on <html> by `layout.tsx`, sourced from
+ * `src/themes/library.ts`.
+ *
+ * That is what makes changing one line in site.config.ts re-theme the whole site,
+ * and why no component ever needs a raw hex value. Utilities generated here:
+ *   bg-bg  bg-surface  text-text  text-muted  bg-accent  text-positive  text-negative
+ *   font-display  font-body
+ */
+@theme {
+  --color-bg: var(--site-bg);
+  --color-surface: var(--site-surface);
+  --color-text: var(--site-text);
+  --color-muted: var(--site-muted);
+  --color-accent: var(--site-accent);
+  --color-positive: var(--site-positive);
+  --color-negative: var(--site-negative);
+
+  /* Readable foreground for text on an accent-filled surface. Computed per theme. */
+  --color-on-accent: var(--site-on-accent);
+
+  /* Accent, darkened only as far as AA requires, for accent-coloured TEXT.
+     Use `accent` for fills and borders, `accent-text` whenever it is type. */
+  --color-accent-text: var(--site-accent-text);
+
+  --font-display: var(--site-font-display);
+  --font-body: var(--site-font-body);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    /* Long unbreakable strings - an unfilled token, a compound business name, a bare
+       URL - must wrap rather than push the page wider than the viewport. This is what
+       keeps the "no horizontal scroll at >=320px" guarantee true for real content. */
+    overflow-wrap: break-word;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* A single, consistent, always-visible focus treatment. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Anchored sections must clear the sticky header when jumped to. */
+  :target {
+    scroll-margin-top: 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
