@@ -1,11 +1,7 @@
 # base-website
 
 A neutral Next.js skeleton for **websites** - marketing pages, local-business sites,
-landing pages. Spin a new site off it with:
-
-```bash
-gh repo create <name> --template manzoorilahi77/base-website
-```
+landing pages.
 
 It removes the boring 30% of every project - theme wiring, SEO plumbing, form UX,
 config, accessibility baseline - so the actual page sections can be built on top
@@ -23,6 +19,66 @@ applications, use [`base-web-react-node`](https://github.com/manzoorilahi77/base
   clearly-marked place to add real delivery.
 - **SEO layer** - Metadata API defaults, JSON-LD, sitemap, robots, generated OG image.
 - **`/style-guide`** and **`/demo-shots`** for checking your theme and screenshotting demos.
+
+## Getting a copy
+
+### With the GitHub CLI
+
+```bash
+gh repo create <name> --template manzoorilahi77/base-website
+```
+
+### Without the GitHub CLI
+
+**In the browser** - open
+[the generate page](https://github.com/manzoorilahi77/base-website/generate),
+name the repo, and click Create. No tooling at all.
+
+**With git** - clone, then start a fresh history:
+
+```bash
+git clone --depth 1 https://github.com/manzoorilahi77/base-website.git <name>
+cd <name>
+rm -rf .git
+git init -b main
+git add -A
+git commit -m "Initial commit from base-website"
+```
+
+**Without git** - download and unpack the tarball:
+
+```bash
+mkdir <name>
+curl -sL https://github.com/manzoorilahi77/base-website/archive/refs/heads/main.tar.gz \
+  | tar -xz -C <name> --strip-components=1
+cd <name>
+```
+
+On Windows without `tar`, download
+[the zip](https://github.com/manzoorilahi77/base-website/archive/refs/heads/main.zip)
+and extract it.
+
+**With degit** - convenient, but it does not preserve symlinks, so `AGENTS.md`
+arrives dangling and has to be recreated:
+
+```bash
+npx degit manzoorilahi77/base-website <name>
+cd <name>
+ln -sf CLAUDE.md AGENTS.md   # required: degit breaks this symlink
+```
+
+After any of these:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Check the symlink survived - it should print `CLAUDE.md`:
+
+```bash
+readlink AGENTS.md
+```
 
 ## Quick start
 
