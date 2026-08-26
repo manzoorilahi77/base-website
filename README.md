@@ -28,13 +28,9 @@ applications, use [`base-web-react-node`](https://github.com/manzoorilahi77/base
 gh repo create <name> --template manzoorilahi77/base-website
 ```
 
-### Without the GitHub CLI
+### With git
 
-**In the browser** - open
-[the generate page](https://github.com/manzoorilahi77/base-website/generate),
-name the repo, and click Create. No tooling at all.
-
-**With git** - clone, then start a fresh history:
+Clone, then start a fresh history so the new site owns its own commits:
 
 ```bash
 git clone --depth 1 https://github.com/manzoorilahi77/base-website.git <name>
@@ -45,7 +41,9 @@ git add -A
 git commit -m "Initial commit from base-website"
 ```
 
-**Without git** - download and unpack the tarball:
+### Without git
+
+Download and unpack the tarball:
 
 ```bash
 mkdir <name>
@@ -58,27 +56,22 @@ On Windows without `tar`, download
 [the zip](https://github.com/manzoorilahi77/base-website/archive/refs/heads/main.zip)
 and extract it.
 
-**With degit** - convenient, but it does not preserve symlinks, so `AGENTS.md`
-arrives dangling and has to be recreated:
-
-```bash
-npx degit manzoorilahi77/base-website <name>
-cd <name>
-ln -sf CLAUDE.md AGENTS.md   # required: degit breaks this symlink
-```
-
-After any of these:
+### Then, in every case
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Check the symlink survived - it should print `CLAUDE.md`:
+`AGENTS.md` is a symlink to `CLAUDE.md`. All three methods above preserve it, but
+Windows checkouts without symlink support can turn it into a plain text file holding
+the path. Confirm it resolved - this should print `CLAUDE.md`:
 
 ```bash
 readlink AGENTS.md
 ```
+
+If it prints nothing, recreate it with `ln -sf CLAUDE.md AGENTS.md`.
 
 ## Quick start
 
